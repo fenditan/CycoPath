@@ -1,0 +1,120 @@
+﻿@model IEnumerable<CycoPath.Models.Park>
+    @using Jmelosegui.Mvc.GoogleMap
+
+    @{ List<string>
+        Name = new List<string>
+            ();
+            List<double>
+                CoordinatesX = new List<double>
+                    ();
+                    List<double>
+                        CoordinatesY = new List<double>
+                            ();
+
+                            }
+
+                            @foreach (var item in Model)
+                            {
+
+                            string name = item.Name;
+                            string coordinates = item.Coordinates;
+                            double cordX = double.Parse(coordinates.Substring(coordinates.LastIndexOf(',') + 1));
+                            double cordY = double.Parse(coordinates.Substring(0, coordinates.LastIndexOf(',')));
+
+                            Name.Add(name);
+                            CoordinatesX.Add(cordX);
+                            CoordinatesY.Add(cordY);
+                            }
+
+                            @section scripts
+                            {
+                            @(Html.GoogleMap().ScriptRegistrar())
+                            }
+
+                            @(
+
+                            Html.GoogleMap()
+                            .Name("map")
+                            .Height(400)
+                            .Center(c => c.Latitude(1.3553794)
+                            .Longitude(103.851959))
+                            .Zoom(12)
+                            .Markers(m => m.Add()
+                            .Latitude(CoordinatesX.ElementAt(0))
+                            .Longitude(CoordinatesY.ElementAt(0))
+                            )
+                            .Markers(n => n.Add()
+                            .Latitude(CoordinatesX.ElementAt(1))
+                            .Longitude(CoordinatesY.ElementAt(1))
+                            )
+         
+
+                            )
+
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Color)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DescriptionAndPostalCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Coordinates)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model) {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Color)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DescriptionAndPostalCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Coordinates)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+
+                            @using (Html.BeginForm("connectorResult", "Park", FormMethod.Post))
+                            {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @{ int i = 0;}
+                                @foreach (var item in Model)
+                                {
+                                var tmp = "no"+i;
+                                <input type="hidden" name="@tmp" value="@Html.DisplayFor(modelItem => item.Name)">
+                                i++;
+
+
+                                }
+                                <button type="submit" class="btn btn-default">
+                                    Connect Park
+                                </button>
+
+                            </div>
+
+                            }
+
+
+
+
+
