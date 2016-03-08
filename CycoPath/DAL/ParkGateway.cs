@@ -11,22 +11,22 @@ namespace CycoPath.DAL
 
     {
         internal CycoPathContext db = new CycoPathContext();
-        internal DbSet<Park> data = null;
+        internal DbSet<Parks> data = null;
 
         public ParkGateway()
         {
-            this.data = db.Set<Park>();
+            this.data = db.Set<Parks>();
         }
 
-        public Park Delete(int? id)
+        public Parks Delete(int? id)
         {
-            Park park = db.Park.Find(id);
+            Parks park = db.Park.Find(id);
             db.Park.Remove(park);
             db.SaveChanges();
             return park;
         }
 
-        public void Insert(Park park)
+        public void Insert(Parks park)
         {
             data.Add(park);
             db.SaveChanges();
@@ -37,35 +37,35 @@ namespace CycoPath.DAL
             db.SaveChanges();
         }
 
-        public IEnumerable<Park> SelectALL()
+        public IEnumerable<Parks> SelectALL()
         {
             return data.ToList();
         }
 
-        public Park SelectById(int? id)
+        public Parks SelectById(int? id)
         {
-            Park park = data.Find(id);
+            Parks park = data.Find(id);
             return park;
         }
 
-        public void Update(Park park)
+        public void Update(Parks park)
         {
             db.Entry(park).State = System.Data.Entity.EntityState.Modified;
             Save();
         }
 
 
-        public IEnumerable<Park> SearchPark(List<string> listString)
+        public IEnumerable<Parks> SearchPark(List<string> listString)
         {
 
-            List<Park> list = new List<Park>();
+            List<Parks> list = new List<Parks>();
 
             foreach (var abc in listString)
             {
-                Park model = data.SqlQuery("SELECT TOP 1* From dbo.Parks WHERE Name ='" + abc + "'").Single();
+                Parks model = data.SqlQuery("SELECT TOP 1* From dbo.Parks WHERE Name ='" + abc + "'").Single();
                 list.Add(model);
             }
-            IEnumerable<Park> listPark = list;
+            IEnumerable<Parks> listPark = list;
 
             return listPark;
         }

@@ -68,6 +68,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -142,7 +144,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Park.cs" />
+    <Compile Include="Models\CycoPathContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CycoPathContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CycoPathContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CycoPathContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CycoPathContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CycoPathContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Parks.cs">
+      <DependentUpon>CycoPathContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Path.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -158,8 +177,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\CycoPathContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CycoPathContext.edmx</DependentUpon>
+      <LastGenOutput>CycoPathContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CycoPathContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CycoPathContext.edmx</DependentUpon>
+      <LastGenOutput>CycoPathContext.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\CycoPathContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CycoPathContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CycoPathContext.edmx.diagram">
+      <DependentUpon>CycoPathContext.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\CycoPath.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jmelosegui.googlemap.js" />
@@ -217,6 +253,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

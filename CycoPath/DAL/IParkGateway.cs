@@ -9,12 +9,12 @@ namespace CycoPath.DAL
 {
     interface IParkGateway
     {
-        IEnumerable<Park> SelectALL();
-        Park SelectById(int? id);
-        void Insert(Park park);
-        void Update(Park park);
-        Park Delete(int? id);
-        IEnumerable<Park> SearchPark(List<string> listString);
+        IEnumerable<Parks> SelectALL();
+        Parks SelectById(int? id);
+        void Insert(Parks park);
+        void Update(Parks park);
+        Parks Delete(int? id);
+        IEnumerable<Parks> SearchPark(List<string> listString);
         void Save();
     }
 }
