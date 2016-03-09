@@ -13,7 +13,7 @@ namespace CycoPath.DAL
         {
 
         }
-        public DbSet<Parks> Park { get; set; }
+        public DbSet<Park> Park { get; set; }
         public DbSet<Path> Path { get; set; }
     }
 }

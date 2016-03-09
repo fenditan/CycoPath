@@ -39,7 +39,6 @@ C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\System.Web.WebPages.Deploy
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\System.Web.WebPages.Razor.xml
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\Antlr3.Runtime.pdb
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\Newtonsoft.Json.xml
-C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\obj\Debug\CycoPath.csprojResolveAssemblyReference.cache
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\obj\Debug\CycoPath.Properties.Resources.resources
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\obj\Debug\CycoPath.csproj.GenerateResource.Cache
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\obj\Debug\CycoPath.dll

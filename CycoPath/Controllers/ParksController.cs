@@ -28,7 +28,7 @@ namespace CycoPath.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Parks park = parkGateway.SelectById(id);
+            Park park = parkGateway.SelectById(id);
 
             if (park == null)
             {
@@ -54,7 +54,7 @@ namespace CycoPath.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult pathResult(string no0, string no1)
+        public ActionResult PathResult(string no0, string no1)
         {
             List<String> listString = new List<String>();
             listString.Add(no0);
@@ -74,7 +74,7 @@ namespace CycoPath.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Color,DescriptionAndPostalCode,Coordinates")] Parks park)
+        public ActionResult Create([Bind(Include = "Id,Name,Color,DescriptionAndPostalCode,Coordinates")] Park park)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace CycoPath.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Parks park = parkGateway.SelectById(id);
+            Park park = parkGateway.SelectById(id);
             if (park == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace CycoPath.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Color,DescriptionAndPostalCode,Coordinates")] Parks park)
+        public ActionResult Edit([Bind(Include = "Id,Name,Color,DescriptionAndPostalCode,Coordinates")] Park park)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace CycoPath.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Parks park = parkGateway.SelectById(id);
+            Park park = parkGateway.SelectById(id);
             if (park == null)
             {
                 return HttpNotFound();
@@ -136,7 +136,7 @@ namespace CycoPath.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Parks park = parkGateway.SelectById(id);
+            Park park = parkGateway.SelectById(id);
             parkGateway.Delete(id);
             parkGateway.Save();
             return RedirectToAction("Index");

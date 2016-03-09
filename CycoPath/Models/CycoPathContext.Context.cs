@@ -13,10 +13,10 @@ namespace CycoPath.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class cycopathEntities : DbContext
+    public partial class CycoPathEntities : DbContext
     {
-        public cycopathEntities()
-            : base("name=cycopathEntities")
+        public CycoPathEntities()
+            : base("name=CycoPathEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace CycoPath.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Parks> Park { get; set; }
+        public virtual DbSet<Park> Parks { get; set; }
+        public virtual DbSet<Path> Paths { get; set; }
     }
 }

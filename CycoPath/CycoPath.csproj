@@ -135,15 +135,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParksController.cs" />
-    <Compile Include="DAL\CycoPathContext.cs" />
-    <Compile Include="DAL\IParkGateway.cs" />
-    <Compile Include="DAL\IPathGateway.cs" />
-    <Compile Include="DAL\ParkGateway.cs" />
-    <Compile Include="DAL\PathGateway.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CycoPathContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,10 +150,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CycoPathContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Parks.cs">
+    <Compile Include="DAL\CycoPathContexts.cs" />
+    <Compile Include="DAL\IParkGateway.cs" />
+    <Compile Include="DAL\IPathGateway.cs" />
+    <Compile Include="Models\Park.cs">
       <DependentUpon>CycoPathContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Path.cs" />
+    <Compile Include="DAL\ParkGateway.cs" />
+    <Compile Include="Models\Path.cs">
+      <DependentUpon>CycoPathContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PathGateway.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -173,10 +175,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\CycoPathContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CycoPathContext.edmx</DependentUpon>
@@ -187,6 +185,10 @@
       <DependentUpon>CycoPathContext.edmx</DependentUpon>
       <LastGenOutput>CycoPathContext.cs</LastGenOutput>
     </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\CycoPathContext.edmx">
