@@ -5,14 +5,14 @@ namespace CycoPath.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CycoPath.DAL.CycoPathContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CycoPath.DAL.CycoPathEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(CycoPath.DAL.CycoPathContext context)
+        protected override void Seed(CycoPath.DAL.CycoPathEntities context)
         {
             //  This method will be called after migrating to the latest version.
 

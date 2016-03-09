@@ -150,7 +150,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CycoPathContext.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DAL\CycoPathContexts.cs" />
+    <Compile Include="DAL\CycoPathContext.cs" />
     <Compile Include="DAL\IParkGateway.cs" />
     <Compile Include="DAL\IPathGateway.cs" />
     <Compile Include="Models\Park.cs">

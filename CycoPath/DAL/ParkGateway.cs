@@ -10,7 +10,7 @@ namespace CycoPath.DAL
     public class ParkGateway : IParkGateway
 
     {
-        internal CycoPathContext db = new CycoPathContext();
+        internal CycoPathEntities db = new CycoPathEntities();
         internal DbSet<Park> data = null;
 
         public ParkGateway()
@@ -20,8 +20,8 @@ namespace CycoPath.DAL
 
         public Park Delete(int? id)
         {
-            Park park = db.Park.Find(id);
-            db.Park.Remove(park);
+            Park park = db.Parks.Find(id);
+            db.Parks.Remove(park);
             db.SaveChanges();
             return park;
         }

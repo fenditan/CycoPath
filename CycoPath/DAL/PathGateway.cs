@@ -10,7 +10,7 @@ namespace CycoPath.DAL
     public class PathGateway : IPathGateway
     {
 
-        internal CycoPathContext db = new CycoPathContext();
+        internal CycoPathEntities db = new CycoPathEntities();
         internal DbSet<Path> data = null;
 
         public PathGateway()
@@ -20,8 +20,8 @@ namespace CycoPath.DAL
 
         public Path Delete(int? id)
         {
-            Path Path = db.Path.Find(id);
-            db.Path.Remove(Path);
+            Path Path = db.Paths.Find(id);
+            db.Paths.Remove(Path);
             db.SaveChanges();
             return Path;
         }
