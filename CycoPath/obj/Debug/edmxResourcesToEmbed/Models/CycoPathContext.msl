@@ -26,5 +26,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Carparks">
+      <EntityTypeMapping TypeName="CycoPathModel.Carpark">
+        <MappingFragment StoreEntitySet="Carparks">
+          <ScalarProperty Name="adhocParking" ColumnName="adhocParking" />
+          <ScalarProperty Name="parkAndrideScheme" ColumnName="parkAndrideScheme" />
+          <ScalarProperty Name="nightParking" ColumnName="nightParking" />
+          <ScalarProperty Name="freeParking" ColumnName="freeParking" />
+          <ScalarProperty Name="shortTermparking" ColumnName="shortTermparking" />
+          <ScalarProperty Name="typeOfparking" ColumnName="typeOfparking" />
+          <ScalarProperty Name="carparkType" ColumnName="carparkType" />
+          <ScalarProperty Name="y_coord" ColumnName="y_coord" />
+          <ScalarProperty Name="x_coord" ColumnName="x_coord" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="carparkNo" ColumnName="carparkNo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

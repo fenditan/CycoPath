@@ -21,10 +21,28 @@
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="StyleURl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="altMode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Coordinates" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Coordinates" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="CycoPathEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Parks" EntityType="Self.Park" />
     <EntitySet Name="Paths" EntityType="Self.Path" />
+    <EntitySet Name="Carparks" EntityType="CycoPathModel.Carpark" />
   </EntityContainer>
+  <EntityType Name="Carpark">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="carparkNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="x_coord" Type="Double" Nullable="false" />
+    <Property Name="y_coord" Type="Double" Nullable="false" />
+    <Property Name="carparkType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="typeOfparking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="shortTermparking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="freeParking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nightParking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="parkAndrideScheme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="adhocParking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

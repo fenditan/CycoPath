@@ -178,9 +178,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\WeatherGateway.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.def.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Models\CycoPathContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -1,10 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CycoPathModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Carparks">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="carparkNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="x_coord" Type="float" Nullable="false" />
+    <Property Name="y_coord" Type="float" Nullable="false" />
+    <Property Name="carparkType" Type="nvarchar(max)" />
+    <Property Name="typeOfparking" Type="nvarchar(max)" />
+    <Property Name="shortTermparking" Type="nvarchar(max)" />
+    <Property Name="freeParking" Type="nvarchar(max)" />
+    <Property Name="nightParking" Type="nvarchar(max)" />
+    <Property Name="parkAndrideScheme" Type="nvarchar(max)" />
+    <Property Name="adhocParking" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Parks">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="255" />
     <Property Name="Color" Type="varchar" MaxLength="255" />
     <Property Name="DescriptionAndPostalCode" Type="varchar" MaxLength="255" />
@@ -14,16 +31,17 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="255" />
     <Property Name="IdData" Type="varchar" MaxLength="255" />
     <Property Name="ConnectorName" Type="varchar" MaxLength="255" />
     <Property Name="Description" Type="varchar" MaxLength="255" />
     <Property Name="StyleURl" Type="varchar" MaxLength="255" />
     <Property Name="altMode" Type="varchar" MaxLength="255" />
-    <Property Name="Coordinates" Type="varchar" MaxLength="255" />
+    <Property Name="Coordinates" Type="text" />
   </EntityType>
   <EntityContainer Name="CycoPathModelStoreContainer">
+    <EntitySet Name="Carparks" EntityType="Self.Carparks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parks" EntityType="Self.Parks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Paths" EntityType="Self.Paths" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
