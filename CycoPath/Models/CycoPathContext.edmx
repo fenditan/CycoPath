@@ -4,12 +4,29 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CycoPathModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CycoPathModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carparks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="carparkNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="x_coord" Type="float" Nullable="false" />
+          <Property Name="y_coord" Type="float" Nullable="false" />
+          <Property Name="carparkType" Type="nvarchar(max)" />
+          <Property Name="typeOfparking" Type="nvarchar(max)" />
+          <Property Name="shortTermparking" Type="nvarchar(max)" />
+          <Property Name="freeParking" Type="nvarchar(max)" />
+          <Property Name="nightParking" Type="nvarchar(max)" />
+          <Property Name="parkAndrideScheme" Type="nvarchar(max)" />
+          <Property Name="adhocParking" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Parks">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="Color" Type="varchar" MaxLength="255" />
           <Property Name="DescriptionAndPostalCode" Type="varchar" MaxLength="255" />
@@ -19,21 +36,21 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="IdData" Type="varchar" MaxLength="255" />
           <Property Name="ConnectorName" Type="varchar" MaxLength="255" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
           <Property Name="StyleURl" Type="varchar" MaxLength="255" />
           <Property Name="altMode" Type="varchar" MaxLength="255" />
-          <Property Name="Coordinates" Type="varchar" MaxLength="255" />
+          <Property Name="Coordinates" Type="text" />
         </EntityType>
         <EntityContainer Name="CycoPathModelStoreContainer">
+          <EntitySet Name="Carparks" EntityType="Self.Carparks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parks" EntityType="Self.Parks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paths" EntityType="Self.Paths" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CycoPathModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -58,12 +75,30 @@
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="StyleURl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="altMode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Coordinates" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Coordinates" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="CycoPathEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Parks" EntityType="Self.Park" />
           <EntitySet Name="Paths" EntityType="Self.Path" />
+          <EntitySet Name="Carparks" EntityType="CycoPathModel.Carpark" />
         </EntityContainer>
+        <EntityType Name="Carpark">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="carparkNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="x_coord" Type="Double" Nullable="false" />
+          <Property Name="y_coord" Type="Double" Nullable="false" />
+          <Property Name="carparkType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="typeOfparking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shortTermparking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="freeParking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nightParking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="parkAndrideScheme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="adhocParking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -92,6 +127,24 @@
                 <ScalarProperty Name="StyleURl" ColumnName="StyleURl" />
                 <ScalarProperty Name="altMode" ColumnName="altMode" />
                 <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carparks">
+            <EntityTypeMapping TypeName="CycoPathModel.Carpark">
+              <MappingFragment StoreEntitySet="Carparks">
+                <ScalarProperty Name="adhocParking" ColumnName="adhocParking" />
+                <ScalarProperty Name="parkAndrideScheme" ColumnName="parkAndrideScheme" />
+                <ScalarProperty Name="nightParking" ColumnName="nightParking" />
+                <ScalarProperty Name="freeParking" ColumnName="freeParking" />
+                <ScalarProperty Name="shortTermparking" ColumnName="shortTermparking" />
+                <ScalarProperty Name="typeOfparking" ColumnName="typeOfparking" />
+                <ScalarProperty Name="carparkType" ColumnName="carparkType" />
+                <ScalarProperty Name="y_coord" ColumnName="y_coord" />
+                <ScalarProperty Name="x_coord" ColumnName="x_coord" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="carparkNo" ColumnName="carparkNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

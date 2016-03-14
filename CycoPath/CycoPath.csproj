@@ -135,6 +135,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParksController.cs" />
+    <Compile Include="DAL\DataMapper.cs" />
+    <Compile Include="DAL\IDataMapper.cs" />
+    <Compile Include="Models\Carpark.cs">
+      <DependentUpon>CycoPathContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CycoPathContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,10 +236,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Parks\Create.cshtml" />
-    <Content Include="Views\Parks\Delete.cshtml" />
-    <Content Include="Views\Parks\Details.cshtml" />
-    <Content Include="Views\Parks\Edit.cshtml" />
     <Content Include="Views\Parks\Index.cshtml" />
     <Content Include="Views\Parks\ParkResult.cshtml" />
     <Content Include="Views\Parks\PathResult.cshtml" />

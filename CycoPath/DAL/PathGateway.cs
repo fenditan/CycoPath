@@ -37,14 +37,14 @@ namespace CycoPath.DAL
             db.SaveChanges();
         }
 
-        public IEnumerable<Path> SearchConnector(List<string> listString)
+        public IEnumerable<Path> SearchPath(List<string> listString)
         {
 
             List<Path> list = new List<Path>();
 
             foreach (var abc in listString)
             {
-                Path model = data.SqlQuery("SELECT TOP 1 * From dbo.Connectors WHERE ConnectorName LIKE '%" + abc + "%'").Single();
+                Path model = data.SqlQuery("SELECT TOP 1 * From dbo.Paths WHERE ConnectorName LIKE '%" + abc + "%'").Single();
                 list.Add(model);
             }
             IEnumerable<Path> listConnector = list;

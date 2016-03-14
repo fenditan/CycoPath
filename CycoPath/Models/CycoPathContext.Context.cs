@@ -27,5 +27,6 @@ namespace CycoPath.Models
     
         public virtual DbSet<Park> Parks { get; set; }
         public virtual DbSet<Path> Paths { get; set; }
+        public virtual DbSet<Carpark> Carparks { get; set; }
     }
 }
