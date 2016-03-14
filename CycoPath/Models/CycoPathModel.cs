@@ -9,5 +9,6 @@ namespace CycoPath.Models
     {
         public Park ParkViewModel { get; set; }
         public Path PathViewModel { get; set; }
+        public Weather WeatherViewModel { get; set; }
     }
 }
