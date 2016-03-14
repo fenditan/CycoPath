@@ -11,8 +11,8 @@
 @foreach (var item in Model)
 {
 
-    string name = item.Name;
-    string coordinates = item.Coordinates;
+    string name = item.ParkViewModel.Name;
+    string coordinates = item.ParkViewModel.Coordinates;
     double cordX = double.Parse(coordinates.Substring(coordinates.LastIndexOf(',') + 1));
     double cordY = double.Parse(coordinates.Substring(0, coordinates.LastIndexOf(',')));
 
@@ -46,7 +46,7 @@
 
 )
 
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -108,7 +108,7 @@
 
     </div>
 
-            }
+            }*@
 
 
 
