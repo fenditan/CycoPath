@@ -2,7 +2,7 @@
 @using Jmelosegui.Mvc.GoogleMap
 
 @{ List<string>
-   Name = new List<string>();
+                 Name = new List<string>();
     List<double> CoordinatesX = new List<double>();
     List<double> CoordinatesY = new List<double>();
 
@@ -45,70 +45,114 @@
 
 
 )
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DescriptionAndPostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Coordinates)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescriptionAndPostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Coordinates)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-</table>
-
-@using (Html.BeginForm("PathResult", "Parks", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        @{ int i = 0;}
+<div class="container">
+    <div class="row">
         @foreach (var item in Model)
         {
-            var tmp = "no" + i;
-            <input type="hidden" name="@tmp" value="@Html.DisplayFor(modelItem => item.Name)">
-            i++;
+            <div class="col-md-4 portfolio-item">
+                <div class="thumbnail">
 
+                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
 
+                    <h3>
+                        <a>@Html.DisplayFor(modelItem => item.ParkViewModel.Name)</a>
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                </div>
+            </div>
         }
-        <button type="submit" class="btn btn-default">
-            Connect Park
-        </button>
-
+        <div class="col-md-4 portfolio-item">
+            <div class="caption">
+                <h3>Information</h3>
+                <p>To set path as the path that are you going select the radio button bellow. By selecting the radio button, this path will be saved and can be used in "Track Me!" function.</p>
+                <div class="thumbnail">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            Set as path!
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            Set as path and search carpark!
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default">
+                    Submit
+                </button>
+            </div>
+        </div>
     </div>
+</div>
 
-            }*@
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescriptionAndPostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coordinates)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriptionAndPostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Coordinates)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @using (Html.BeginForm("PathResult", "Parks", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @{ int i = 0;}
+            @foreach (var item in Model)
+            {
+                var tmp = "no" + i;
+                <input type="hidden" name="@tmp" value="@Html.DisplayFor(modelItem => item.Name)">
+                i++;
+
+
+            }
+            <button type="submit" class="btn btn-default">
+                Connect Park
+            </button>
+
+        </div>
+
+                }*@
 
 
 
