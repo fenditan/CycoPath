@@ -12,6 +12,11 @@ namespace CycoPath.DAL
         internal CycoPathEntities db = new CycoPathEntities();
         internal DbSet<Carpark> data = null;
 
+        public CarparkGateway()
+        {
+            this.data = db.Set<Carpark>();
+        }
+
         public Carpark Delete(int? id)
         {
             Carpark carpark = db.Carparks.Find(id);

@@ -47,7 +47,10 @@
 )
 <div class="container">
     <div class="row">
-        @foreach (var item in Model)
+@using (Html.BeginForm("Index", "Carparks", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+        foreach (var item in Model)
         {
             <div class="col-md-4 portfolio-item">
                 <div class="thumbnail">
@@ -84,6 +87,7 @@
                 </button>
             </div>
         </div>
+}
     </div>
 </div>
 
