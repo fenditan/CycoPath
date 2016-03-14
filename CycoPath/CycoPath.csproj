@@ -135,7 +135,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParksController.cs" />
+    <Compile Include="DAL\CarparkGateway.cs" />
     <Compile Include="DAL\DataMapper.cs" />
+    <Compile Include="DAL\ICarparkGateway.cs" />
     <Compile Include="DAL\IDataMapper.cs" />
     <Compile Include="Models\Carpark.cs">
       <DependentUpon>CycoPathContext.tt</DependentUpon>
