@@ -10,7 +10,7 @@ namespace CycoPath.DAL
     interface IPathGateway
     {
         IEnumerable<Path> SelectALL();
-        IEnumerable<Path> SearchPath(List<string> listString);
+        Path SearchPath(string park);
         Path SelectById(int? id);
         void Insert(Path path);
         void Update(Path path);

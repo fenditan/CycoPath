@@ -20,22 +20,6 @@ namespace CycoPath.Controllers
             return View(data.SelectALLPark());
         }
 
-        // GET: Park/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Park park = data.SelectParkById(id);
-
-            if (park == null)
-            {
-                return HttpNotFound();
-            }
-            return View(park);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ParkResult(string start, string end)
@@ -43,19 +27,9 @@ namespace CycoPath.Controllers
             List<String> listString = new List<String>();
             listString.Add(start);
             listString.Add(end);
-            return View(data.SearchPark(listString));
+            return View(data.SearchAllParksPath(listString));
 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PathResult(string no0, string no1)
-        {
-            List<String> listString = new List<String>();
-            listString.Add(no0);
-            listString.Add(no1);
-            return View(data.SearchPath(listString));
-
-        }
     }
 }
