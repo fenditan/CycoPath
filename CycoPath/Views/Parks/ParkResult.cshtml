@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CycoPath.Models.CycoPathModel>
+﻿@model dynamic
+@using CycoPath.Models;
 @using Jmelosegui.Mvc.GoogleMap
 
 @{ List<string>
@@ -8,17 +9,20 @@
 
 }
 
-@foreach (var item in Model)
+@foreach (Park parks in Model.Parks)
 {
 
-    string name = item.ParkViewModel.Name;
-    string coordinates = item.ParkViewModel.Coordinates;
-    double cordX = double.Parse(coordinates.Substring(coordinates.LastIndexOf(',') + 1));
-    double cordY = double.Parse(coordinates.Substring(0, coordinates.LastIndexOf(',')));
+    //string name = item.ParkViewModel.Name;
+    //string coordinates = item.ParkViewModel.Coordinates;
+    //double cordX = double.Parse(coordinates.Substring(coordinates.LastIndexOf(',') + 1));
+    //double cordY = double.Parse(coordinates.Substring(0, coordinates.LastIndexOf(',')));
+    string name = parks.Name;
+    string[] coordinates = parks.Coordinates.Split(',');
+
 
     Name.Add(name);
-    CoordinatesX.Add(cordX);
-    CoordinatesY.Add(cordY);
+    CoordinatesX.Add(double.Parse(coordinates[1]));
+    CoordinatesY.Add(double.Parse(coordinates[0]));
 }
 
 @section scripts
@@ -28,20 +32,31 @@
 
 @(
 
-                            Html.GoogleMap()
-                            .Name("map")
-                            .Height(400)
-                            .Center(c => c.Latitude(1.3553794)
-                            .Longitude(103.851959))
-                            .Zoom(12)
-                            .Markers(m => m.Add()
-                            .Latitude(CoordinatesX.ElementAt(0))
-                            .Longitude(CoordinatesY.ElementAt(0))
-                            )
-                            .Markers(n => n.Add()
-                            .Latitude(CoordinatesX.ElementAt(1))
-                            .Longitude(CoordinatesY.ElementAt(1))
-                            )
+                                    Html.GoogleMap()
+                                    .Name("map")
+                                    .Height(400)
+                                    .Center(c => c.Latitude((CoordinatesX[0]+ CoordinatesX[1])/2)
+                                    .Longitude((CoordinatesY[0]+ CoordinatesY[0])/2))
+                                    .Zoom(12)
+                                    .Markers(m => m.Add()
+                                    .Latitude(CoordinatesX[0])
+                                    .Longitude(CoordinatesY[0])
+                                    )
+                                    .Markers(n => n.Add()
+                                    .Latitude(CoordinatesX[1])
+                                    .Longitude(CoordinatesY[1])
+                                    )
+                                    .Polylines(pf => pf.Add()
+                                            .Points(ptn => {
+                                                foreach (List<double[]> path in Model.Paths)
+                                                {
+                                                    foreach (double[] points in path)
+                                                    {
+                                                        ptn.Add(points[1], points[0]);
+                                                    }
+                                                }
+                                            })
+                                            .StrokeColor(System.Drawing.Color.DarkRed))
 
 
 )
@@ -58,7 +73,7 @@
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
 
                     <h3>
-                        <a>@Html.DisplayFor(modelItem => item.ParkViewModel.Name)</a>
+                        <a>@*@Html.DisplayFor(modelItem => item.ParkViewModel.Name)*@</a>
                     </h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
                 </div>

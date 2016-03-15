@@ -30,7 +30,7 @@ namespace CycoPath.DAL
             return listModel;
         }
 
-        public IEnumerable<Park> SelectALLPark()
+        public IEnumerable<Park> SelectAllPark()
         {
             return parkGateway.SelectALL();
         }
@@ -40,15 +40,15 @@ namespace CycoPath.DAL
         //    return parkGateway.SelectById(id);
         //}
 
-        //public IEnumerable<Park> SearchPark(List<string> listString)
-        //{
-        //    return parkGateway.SearchPark(listString);
-        //}
+        public IEnumerable<Park> SearchPark(List<string> listString)
+        {
+            return parkGateway.SearchPark(listString);
+        }
 
-        //public IEnumerable<Path> SelectALLPath()
-        //{
-        //    return pathGateway.SelectALL();
-        //}
+        public IEnumerable<Path> SelectAllPath()
+        {
+            return pathGateway.SelectALL();
+        }
 
         //public Path SelectPathById(int? id)
         //{

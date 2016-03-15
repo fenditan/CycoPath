@@ -10,7 +10,7 @@ namespace CycoPath.DAL
     interface IDataMapper
     {
         ICollection<CycoPathModel> SearchAllParksPath(List<string> listString);
-        IEnumerable<Park> SelectALLPark();
+        IEnumerable<Park> SelectAllPark();
         //Park SelectParkById(int? id);
         //IEnumerable<Park> SearchPark(List<string> listString);
         //IEnumerable<Path> SearchPath(List<string> listString);
