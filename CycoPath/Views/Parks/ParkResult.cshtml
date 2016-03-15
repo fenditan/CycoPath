@@ -11,11 +11,6 @@
 
 @foreach (Park parks in Model.Parks)
 {
-
-    //string name = item.ParkViewModel.Name;
-    //string coordinates = item.ParkViewModel.Coordinates;
-    //double cordX = double.Parse(coordinates.Substring(coordinates.LastIndexOf(',') + 1));
-    //double cordY = double.Parse(coordinates.Substring(0, coordinates.LastIndexOf(',')));
     string name = parks.Name;
     string[] coordinates = parks.Coordinates.Split(',');
 
@@ -47,7 +42,8 @@
                                     .Longitude(CoordinatesY[1])
                                     )
                                     .Polylines(pf => pf.Add()
-                                            .Points(ptn => {
+                                            .Points(ptn =>
+                                            {
                                                 foreach (List<double[]> path in Model.Paths)
                                                 {
                                                     foreach (double[] points in path)
@@ -57,8 +53,6 @@
                                                 }
                                             })
                                             .StrokeColor(System.Drawing.Color.DarkRed))
-
-
 )
 <div class="container">
     <div class="row">

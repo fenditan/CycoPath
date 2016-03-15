@@ -171,3 +171,4 @@ D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.Properties.Resources.resourc
 D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.csproj.GenerateResource.Cache
 D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.dll
 D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.pdb
+D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.csprojResolveAssemblyReference.cache
