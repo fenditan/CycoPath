@@ -39,7 +39,7 @@ namespace CycoPath.Controllers
             double[] endCoord = toDoubleArray(((List<Park>)startEndPark)[1].Coordinates.Split(','));
             
             Dictionary<int,List<double[]>> paths = getPaths();
-            List<List<double[]>> route = getRoute(startCoord, endCoord, paths, 2);
+            List<List<double[]>> route = getRoute(startCoord, endCoord, paths);
             ParksPathsModel.Paths = route;
 
             return View(ParksPathsModel);
@@ -69,12 +69,8 @@ namespace CycoPath.Controllers
             return result;
         }
 
-        private List<List<double[]>> getRoute(double[] start, double[] end, Dictionary<int, List<double[]>> allPaths, int A)
+        private List<List<double[]>> getRoute(double[] start, double[] end, Dictionary<int, List<double[]>> allPaths)
         {
-            if (A == 0)
-            {
-                return new List<List<double[]>>();
-            }
             double startToEnd = getDistance(start, end);
             double currentMin = startToEnd;
             int KeyToRemove = -1;
@@ -90,13 +86,7 @@ namespace CycoPath.Controllers
                 double PathEndDistanceFromStart = getDistance(start, pathEndCoord);
                 double PathStartDistanceFromEnd = getDistance(end, pathStartCoord);
                 double PathEndDistanceFromEnd = getDistance(end, pathEndCoord);
-
-                //  if path goes further away from end, go to next iteration
-                //if ((PathStartDistanceFromEnd > startToEnd) || (PathEndDistanceFromEnd > startToEnd))
-                //{
-                //    continue;
-                //}
-
+                
                 if ((currentMin > PathStartDistanceFromStart) || (currentMin > PathEndDistanceFromStart))
                 {
                     if (PathStartDistanceFromStart < PathEndDistanceFromStart)
@@ -129,20 +119,19 @@ namespace CycoPath.Controllers
                 }
             }
 
-                //allPaths.Remove(KeyToRemove);
-                //if (KeyToRemove != 0)
-                //{
-                //    ;
-                //}
-                //else
-                //{
-                //    return new List<List<double[]>>();
-                //}           
+            if (KeyToRemove != -1)
+            {
+                allPaths.Remove(KeyToRemove);
+            }
+            else
+            {
+                return new List<List<double[]>>();
+            }
 
-                List<List<double[]>> route = new List<List<double[]>>();
+            List<List<double[]>> route = new List<List<double[]>>();
 
             route.Add(partialRoute);
-            route.AddRange(getRoute(start, end, allPaths, --A));
+            route.AddRange(getRoute(start, end, allPaths));
 
             return route;
         }
