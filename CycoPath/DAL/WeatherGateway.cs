@@ -13,11 +13,12 @@ namespace CycoPath.DAL
 
         private WeatherService weatherService = new WeatherService();
 
-        public Weather findParkWeather(String coordinates) {
+        public Weather getParkWeather(String coordinates) {
             String[] coordinate = coordinates.Split(',');
             double[] parseCoodinate = { double.Parse(coordinate[0]), double.Parse(coordinate[1]) };
 
             String listOfWeather = weatherService.GetWeatherForecast();
+
             return null;
         }
 

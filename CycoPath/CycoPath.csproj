@@ -144,6 +144,8 @@
     <Compile Include="DAL\DataMapper.cs" />
     <Compile Include="DAL\ICarparkGateway.cs" />
     <Compile Include="DAL\IDataMapper.cs" />
+    <Compile Include="DAL\IWeatherGateway.cs" />
+    <Compile Include="DAL\WeatherGateway.cs" />
     <Compile Include="Models\Carpark.cs">
       <DependentUpon>CycoPathContext.tt</DependentUpon>
     </Compile>

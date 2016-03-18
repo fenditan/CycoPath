@@ -8,5 +8,6 @@ namespace CycoPath.DAL
 {
     interface IWeatherGateway
     {
+
     }
 }
