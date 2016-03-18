@@ -15,7 +15,7 @@ namespace CycoPath.Controllers
 {
     public class ParksController : Controller
     {
-        private DataMapper data = new DataMapper();
+        private IDataMapper data = new DataMapper();
         // GET: Park
         public ActionResult Index()
         {

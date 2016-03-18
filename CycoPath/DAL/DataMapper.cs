@@ -9,9 +9,9 @@ namespace CycoPath.DAL
 {
     public class DataMapper : IDataMapper
     {
-        private PathGateway pathGateway = new PathGateway();
-        private ParkGateway parkGateway = new ParkGateway();
-        private WeatherGateway weatherGateway = new WeatherGateway();
+        private IPathGateway pathGateway = new PathGateway();
+        private IParkGateway parkGateway = new ParkGateway();
+        private WeatherService weatherService = new WeatherService();
 
         List<CycoPathModel> listModel = new List<CycoPathModel>();
 

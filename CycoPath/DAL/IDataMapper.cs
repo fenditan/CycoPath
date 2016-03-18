@@ -12,9 +12,9 @@ namespace CycoPath.DAL
         ICollection<CycoPathModel> SearchAllParksPath(List<string> listString);
         IEnumerable<Park> SelectAllPark();
         //Park SelectParkById(int? id);
-        //IEnumerable<Park> SearchPark(List<string> listString);
+        IEnumerable<Park> SearchPark(List<string> listString);
         //IEnumerable<Path> SearchPath(List<string> listString);
-        //IEnumerable<Path> SelectALLPath();
+        IEnumerable<Path> SelectAllPath();
         //Path SelectPathById(int? id);
     }
 }

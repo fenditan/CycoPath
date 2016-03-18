@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace CycoPath.Services
 {
-    public class WeatherGateway
+    public class WeatherService
     {
         private const string URL = "http://www.nea.gov.sg/api/WebAPI/?dataset=nowcast&keyref=781CF461BB6606AD4AF8F309C0CCE9941C98AB71D91D487D";
         public string GetWeatherForecast()
