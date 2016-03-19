@@ -16,10 +16,18 @@ namespace CycoPath.Controllers
         private CarparkGateway carparkGateway = new CarparkGateway();
 
         // GET: Carparks
-        public ActionResult Index()
+        public ActionResult Index(string hiddenTab1, string hiddenTab)
+
         {
-            return View(carparkGateway.SelectALL());
+
+            double lat = Convert.ToDouble(hiddenTab);
+            double lon = Convert.ToDouble(hiddenTab1);
+            ViewBag.lat = lat;
+            ViewBag.lon = lon;
+
+            //  IEnumerable<Carpark> data = carparkGateway.SearchCarPark(lat, lon);
+
+            return View(carparkGateway.SearchCarPark(lat, lon));
         }
-        
     }
 }
