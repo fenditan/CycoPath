@@ -62,8 +62,9 @@
 @using (Html.BeginForm("Index", "Carparks", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-        foreach (Park park in Model.Parks)
-        {
+    int i = 0;
+    foreach (Park park in Model.Parks)
+    {
             <div class="col-md-4 portfolio-item">
                 <div class="thumbnail">
 
@@ -72,11 +73,24 @@
                     <h3>
                         <a>@Html.DisplayFor(modelItem => park.Name)</a>
                     </h3>
-                    
-                        <p>Forcast: @Html.DisplayFor(modelItem => (Model.Weather)[0].Forecast)</p>
+                    @{int k = 0;
+                    }
+                    @foreach (Weather weather in Model.Weather)
+                    {
+                        if (k == 0 && i == 0)
+                        {
+                            <p>Forcast: @Html.DisplayFor(modelItem => weather.Forecast)</p>
+                        }
+                        else if (k == 1 && i == 1)
+                        {
+                            <p>Forcast: @Html.DisplayFor(modelItem => weather.Forecast)</p>
+                        }
+                        k++;
+                    }
                     
                 </div>
             </div>
+            i++;
         }
         <div class="col-md-4 portfolio-item">
             <div class="caption">

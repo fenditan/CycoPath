@@ -170,3 +170,4 @@ D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.csproj.GenerateResource.Cach
 D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.dll
 D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.pdb
 D:\github\2106\CycoPath\CycoPath\obj\Debug\CycoPath.csprojResolveAssemblyReference.cache
+C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\obj\Debug\CycoPath.csprojResolveAssemblyReference.cache
