@@ -16,5 +16,6 @@ namespace CycoPath.DAL
         //IEnumerable<Path> SearchPath(List<string> listString);
         IEnumerable<Path> SelectAllPath();
         //Path SelectPathById(int? id);
+        Weather getParkWeather(string coordinates);
     }
 }

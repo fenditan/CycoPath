@@ -11,7 +11,7 @@ namespace CycoPath.DAL
     {
         private IPathGateway pathGateway = new PathGateway();
         private IParkGateway parkGateway = new ParkGateway();
-        private WeatherService weatherService = new WeatherService();
+        private WeatherGateway weatherGateway = new WeatherGateway();
 
         List<CycoPathModel> listModel = new List<CycoPathModel>();
 
@@ -48,6 +48,11 @@ namespace CycoPath.DAL
         public IEnumerable<Path> SelectAllPath()
         {
             return pathGateway.SelectALL();
+        }
+
+        public Weather getParkWeather(string coordinates)
+        {
+            return weatherGateway.getParkWeather(coordinates);
         }
 
         //public Path SelectPathById(int? id)

@@ -13,7 +13,7 @@ namespace CycoPath.Models
         public string Forecast { get; set; }
         public string Icon { get; set; }
         public string Zone { get; set; }
-        public decimal Lat { get; set; }
-        public decimal Lon { get; set; }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
     }
 }

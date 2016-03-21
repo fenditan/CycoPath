@@ -62,7 +62,7 @@
 @using (Html.BeginForm("Index", "Carparks", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-        foreach (var item in Model)
+        foreach (Park park in Model.Parks)
         {
             <div class="col-md-4 portfolio-item">
                 <div class="thumbnail">
@@ -70,9 +70,11 @@
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
 
                     <h3>
-                        <a>@*@Html.DisplayFor(modelItem => item.ParkViewModel.Name)*@</a>
+                        <a>@Html.DisplayFor(modelItem => park.Name)</a>
                     </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    
+                        <p>Forcast: @Html.DisplayFor(modelItem => (Model.Weather)[0].Forecast)</p>
+                    
                 </div>
             </div>
         }

@@ -44,15 +44,16 @@ namespace CycoPath.Services
 
                     weather.Name = allAreaNames;
                     weather.Forecast = allAreaForecast;
-                    weather.Lat = Double.Parse(allAreaLat);
-                    weather.Lon = Double.Parse(allAreaLon);
+                    
+                    weather.Lat = double.Parse(allAreaLat);
+                    weather.Lon = double.Parse(allAreaLon);
 
                     weatherAll.Add(weather);
 
                 }
                 catch (NullReferenceException nre)
                 {
-
+                     
                 }
             }
 

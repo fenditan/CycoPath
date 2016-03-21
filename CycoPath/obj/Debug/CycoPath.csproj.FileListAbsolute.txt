@@ -107,7 +107,6 @@ C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\roslyn\vbc.exe.config
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\roslyn\vbc.rsp
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\dotless.Core.dll
 C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\bin\dotless.Core.pdb
-C:\Users\Fendi\Documents\GitHub\CycoPath\CycoPath\obj\Debug\CycoPath.csprojResolveAssemblyReference.cache
 D:\github\2106\CycoPath\CycoPath\bin\roslyn\csc.exe
 D:\github\2106\CycoPath\CycoPath\bin\roslyn\csc.exe.config
 D:\github\2106\CycoPath\CycoPath\bin\roslyn\csc.rsp

@@ -17,9 +17,25 @@ namespace CycoPath.DAL
             String[] coordinate = coordinates.Split(',');
             double[] parseCoodinate = { double.Parse(coordinate[0]), double.Parse(coordinate[1]) };
 
-            String listOfWeather = weatherService.GetWeatherForecast();
+            IEnumerable<Weather> listOfWeather = weatherService.GetWeatherForecast();
+            double tempDistance=0;
+            Weather areaWeather = new Weather();
+            foreach (Weather points in listOfWeather)
+            {
+                double[] parseResult = { points.Lat, points.Lon};
+                double distance = getDistance(parseCoodinate, parseResult);
+                //first foreach loop
+                if (tempDistance==0)
+                {
+                    tempDistance = distance;
+                    areaWeather = points;
+                }else if (tempDistance > distance) {
+                    tempDistance = distance;
+                    areaWeather = points;
+                }
+            }
 
-            return null;
+            return areaWeather;
         }
 
         private double getDistance(double[] pointA, double[] pointB)

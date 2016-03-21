@@ -34,6 +34,8 @@ namespace CycoPath.Controllers
 
             IEnumerable<Park> startEndPark = data.SearchPark(startEnd);
             ParksPathsModel.Parks = startEndPark;
+            List<Weather> listofWeather= new List<Weather>();
+            IEnumerable<Weather> weather;
 
             double[] startCoord = toDoubleArray(((List<Park>)startEndPark)[0].Coordinates.Split(','));
             double[] endCoord = toDoubleArray(((List<Park>)startEndPark)[1].Coordinates.Split(','));
@@ -41,7 +43,10 @@ namespace CycoPath.Controllers
             Dictionary<int,List<double[]>> paths = getPaths();
             List<List<double[]>> route = getRoute(startCoord, endCoord, paths);
             ParksPathsModel.Paths = route;
-
+            listofWeather.Add(data.getParkWeather(((List<Park>)startEndPark)[0].Coordinates));
+            listofWeather.Add(data.getParkWeather(((List<Park>)startEndPark)[1].Coordinates));
+            weather = listofWeather;
+            ParksPathsModel.Weather = weather;
             return View(ParksPathsModel);
 
         }
