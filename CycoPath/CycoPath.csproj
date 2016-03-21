@@ -266,9 +266,14 @@
     <Content Include="Views\Parks\ParkResult.cshtml" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
     <Content Include="Views\Carparks\Index.cshtml" />
+    <Content Include="Views\Shared\_CustomLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\CustomTemplate\css\" />
+    <Folder Include="Content\CustomTemplate\fonts\" />
+    <Folder Include="Content\CustomTemplate\images\" />
+    <Folder Include="Content\CustomTemplate\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

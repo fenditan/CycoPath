@@ -1,12 +1,12 @@
-﻿@model dynamic
+﻿
+@model dynamic
 @using CycoPath.Models;
 @using Jmelosegui.Mvc.GoogleMap
 
-@{ List<string>
-                 Name = new List<string>();
-    List<double> CoordinatesX = new List<double>();
-    List<double> CoordinatesY = new List<double>();
 
+@{List<string> Name = new List<string>();
+  List<double> CoordinatesX = new List<double>();
+  List<double> CoordinatesY = new List<double>();
 }
 
 @foreach (Park parks in Model.Parks)
@@ -29,12 +29,11 @@
 }
 
 @(
-
                                     Html.GoogleMap()
                                     .Name("map")
                                     .Height(400)
-                                    .Center(c => c.Latitude((CoordinatesX[0]+ CoordinatesX[1])/2)
-                                    .Longitude((CoordinatesY[0]+ CoordinatesY[0])/2))
+                                    .Center(c => c.Latitude((CoordinatesX[0] + CoordinatesX[1]) / 2)
+                                    .Longitude((CoordinatesY[0] + CoordinatesY[0]) / 2))
                                     .Zoom(12)
                                     .Markers(m => m.Add()
                                     .Latitude(CoordinatesX[0])
@@ -57,138 +56,82 @@
                                             })
                                             .StrokeColor(System.Drawing.Color.DarkRed))
 )
-<div class="container">
-    <div class="row">
-@using (Html.BeginForm("Index", "Carparks", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    int i = 0;
-    foreach (Park park in Model.Parks)
-    {
-            <div class="col-md-4 portfolio-item">
-                <div class="thumbnail">
 
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+@{
+    ViewBag.Title = "ParkResult";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
 
-                    <h3>
-                        <a>@Html.DisplayFor(modelItem => park.Name)</a>
-                    </h3>
-                    @{int k = 0;
-                    }
-                    @foreach (Weather weather in Model.Weather)
+<div class="section third-section">
+    <div class="triangle"></div>
+    <div class="container">
+        <!-- Park Cards section start -->
+        <div class="row-fluid team">
+            @{int i = 0;}
+            @foreach (Park park in Model.Parks)
+            {
+                <div class="span4">
+                    <div class="thumbnail">
+                        <img src="@Url.Content("~/Content/CustomTemplate/")images/Team1.png" alt="team 1">
+                        <h3>@Html.DisplayFor(modelItem => park.Name)</h3>
+
+                        @{int k = 0;}
+                        @foreach (Weather weather in Model.Weather)
+                        {
+                            if (k == 0 && i == 0)
+                            {
+                                <div class="mask">
+                                    <h2>Forcast</h2>
+                                    <p>@Html.DisplayFor(modelItem => weather.Forecast)</p>
+                                </div>
+                            }
+                            else if (k == 1 && i == 1)
+                            {
+                                <div class="mask">
+                                    <h2>Forecast</h2>
+                                    <p>@Html.DisplayFor(modelItem => weather.Forecast)</p>
+                                </div>
+                            }
+                            k++;
+                        }
+                    </div>
+                </div>
+                                i++;
+                            }
+            <div class="span4" style="padding-right:3px">
+                <div class="row span11">
+                    @using (Html.BeginForm("Index", "Carparks", FormMethod.Post))
                     {
-                        if (k == 0 && i == 0)
-                        {
-                            <p>Forcast: @Html.DisplayFor(modelItem => weather.Forecast)</p>
-                        }
-                        else if (k == 1 && i == 1)
-                        {
-                            <p>Forcast: @Html.DisplayFor(modelItem => weather.Forecast)</p>
-                        }
-                        k++;
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-md-4 portfolio-item">
+                            <div class="caption">
+                                <h3>Information</h3>
+                                <p>To set path as the path that are you going select the radio button bellow. By selecting the radio button, this path will be saved and can be used in "Track Me!" function.</p>
+                                <div class="thumbnail">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                            Set as path!
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                            Set as path and search carpark!
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="hiddenTab" name="hiddenTab" value="@ViewBag.startx" />
+                                <input type="hidden" id="hiddenTab1" name="hiddenTab1" value="@ViewBag.starty" />
+
+                                <button id="subscribe" class="button button-sp" style="margin-top:10px;">Submit!</button>
+
+                            </div>
+                        </div>
                     }
-                    
                 </div>
-            </div>
-            i++;
-        }
-        <div class="col-md-4 portfolio-item">
-            <div class="caption">
-                <h3>Information</h3>
-                <p>To set path as the path that are you going select the radio button bellow. By selecting the radio button, this path will be saved and can be used in "Track Me!" function.</p>
-                <div class="thumbnail">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                            Set as path!
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                            Set as path and search carpark!
-                        </label>
-                    </div>
-                </div>
-                <input type="hidden" id="hiddenTab" name="hiddenTab" value="@ViewBag.startx" />
-                <input type="hidden" id="hiddenTab1" name="hiddenTab1" value="@ViewBag.starty" />
-                <button type="submit" class="btn btn-default">
-                    Submit
-                </button>
             </div>
         </div>
-}
     </div>
 </div>
-
-
-
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DescriptionAndPostalCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Coordinates)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DescriptionAndPostalCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Coordinates)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-    </table>
-
-    @using (Html.BeginForm("PathResult", "Parks", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            @{ int i = 0;}
-            @foreach (var item in Model)
-            {
-                var tmp = "no" + i;
-                <input type="hidden" name="@tmp" value="@Html.DisplayFor(modelItem => item.Name)">
-                i++;
-
-
-            }
-            <button type="submit" class="btn btn-default">
-                Connect Park
-            </button>
-
-        </div>
-
-                }*@
-
-
-
-
-
