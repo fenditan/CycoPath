@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CycoPath.Models.Carpark>
+@using Jmelosegui.Mvc.GoogleMap
 
 @{
     ViewBag.Title = "Index";
@@ -7,80 +8,113 @@
 <h2>Index</h2>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.carparkNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.x_coord)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.y_coord)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.carparkType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.typeOfparking)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.shortTermparking)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.freeParking)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nightParking)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.parkAndrideScheme)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adhocParking)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.carparkNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.x_coord)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.y_coord)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.carparkType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.typeOfparking)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.shortTermparking)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.freeParking)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nightParking)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.parkAndrideScheme)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adhocParking)
-        </td>
-    </tr>
+@section scripts
+                            {
+    @(Html.GoogleMap().ScriptRegistrar())
 }
 
-</table>
+
+
+
+@(
+ Html.GoogleMap()
+            .Name("map")
+            .Height(300)
+            .Center(c => c.Latitude(1.290270)
+                          .Longitude(103.851959))
+            .Zoom(10)
+
+
+            .Circles(cf =>
+            {
+                cf.Add()
+                    .Center(new Location(@ViewBag.lat, @ViewBag.lon))
+                    .Radius(5000)
+                    .FillColor(System.Drawing.Color.Blue)
+                    .StrokeColor(System.Drawing.Color.DarkBlue)
+                    .StrokeWeight(4);
+            }
+
+      )
+
+)
+
+
+@* <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.carparkNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.x_coord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.y_coord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.carparkType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.typeOfparking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shortTermparking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.freeParking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nightParking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.parkAndrideScheme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.adhocParking)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.carparkNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.x_coord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.y_coord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.carparkType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typeOfparking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shortTermparking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.freeParking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nightParking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.parkAndrideScheme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adhocParking)
+            </td>
+        </tr>
+    }
+
+    </table>
+*@
