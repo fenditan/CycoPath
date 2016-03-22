@@ -3,9 +3,9 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
 }
 
-<h2>Index</h2>
 
 
 @section scripts
@@ -19,7 +19,7 @@
 @{
     Html.GoogleMap()
                .Name("map")
-               .Height(300)
+               .Height(400)
                .Center(c => c.Latitude(1.290270)
                              .Longitude(103.851959))
                .Zoom(10)
