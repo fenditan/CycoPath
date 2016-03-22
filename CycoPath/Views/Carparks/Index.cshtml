@@ -16,29 +16,49 @@
 
 
 
-@(
- Html.GoogleMap()
-            .Name("map")
-            .Height(300)
-            .Center(c => c.Latitude(1.290270)
-                          .Longitude(103.851959))
-            .Zoom(10)
+@{
+    Html.GoogleMap()
+               .Name("map")
+               .Height(300)
+               .Center(c => c.Latitude(1.290270)
+                             .Longitude(103.851959))
+               .Zoom(10)
+               .Circles(cf =>
+               {
+                   cf.Add()
+                            .Center(new Location(@ViewBag.lat, @ViewBag.lon))
+                            .Radius(5000)
+                            .FillColor(System.Drawing.Color.Blue)
+                            .StrokeColor(System.Drawing.Color.DarkBlue)
+                            .StrokeWeight(4);
+               })
+                .BindTo<CycoPath.Models.Carpark, Marker>
+             (Model, mappings => mappings.For<CycoPath.Models.Carpark>
+                 (
+                     binding => binding.ItemDataBound
+                         (
+                             (marker, regionInfo) =>
+                             {
+                                 marker.Latitude = regionInfo.y_coord;
+                                 marker.Longitude = regionInfo.x_coord;
+                                         // marker.Address = regionInfo.address;
+                                         //marker.Title = regionInfo.address;
+                                         marker.Window = new InfoWindow(marker)
+                                 {
+                                     Template =
+                           {
+                                    Content = () => ViewContext.Writer.Write(regionInfo.address)
+                           }
+                                 };
+                             }
+                         )
+                 )
+             )
+             .Render();
 
 
-            .Circles(cf =>
-            {
-                cf.Add()
-                    .Center(new Location(@ViewBag.lat, @ViewBag.lon))
-                    .Radius(5000)
-                    .FillColor(System.Drawing.Color.Blue)
-                    .StrokeColor(System.Drawing.Color.DarkBlue)
-                    .StrokeWeight(4);
-            }
 
-      )
-
-)
-
+}
 
 @* <table class="table">
         <tr>
