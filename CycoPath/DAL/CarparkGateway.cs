@@ -60,7 +60,7 @@ namespace CycoPath.DAL
         public IEnumerable<Carpark> SearchCarPark(double lat, double lon)
         {
 
-            double radius = 5; //km
+            double radius = 1; //km
 
 
             IEnumerable<Carpark> listCarpark = data.ToList();
