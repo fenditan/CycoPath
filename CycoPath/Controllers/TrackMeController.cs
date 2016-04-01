@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Dynamic;
+using System.Web.Mvc;
 
 namespace CycoPath.Controllers
 {
@@ -6,6 +7,14 @@ namespace CycoPath.Controllers
     {
         public ActionResult Index()
         {
+            dynamic ParksPathsModel = new ExpandoObject();
+            if (Session["ParksPathsModel"] != null)
+            {
+                ParksPathsModel = Session["ParksPathsModel"];
+            }
+            else {
+                ParksPathsModel = null;
+            }
             return View();
         }
 

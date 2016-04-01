@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<!-- Start home section -->
+<div id="home">
+    <!-- Start cSlider -->
+    <div id="da-slider" class="da-slider">
+        <div class="triangle"></div>
+        <!-- mask elemet use for masking background image -->
+        <div class="mask"></div>
+        <!-- All slides centred in container element -->
+        <div class="container">
+            <!-- Start first slide -->
+            <div class="da-slide">
+                <h2 class="fittext2">Enjoy your ride with CycoPath</h2>
+                <h4>Find your Cycling Path within seconds</h4>
+                <p>Find your starting point in a park and the ending point in another park and the path will be mapped to you.</p>
+                <a href="~/Parks" class="da-link button">Cyco Now!</a>
+                <div class="da-img">
+                    <img src="@Url.Content("~/Content/CustomTemplate/")images/logo01.png" alt="image01" width="320">
+                </div>
+            </div>
+            <!-- End first slide -->
+            <!-- Start second slide -->
+            <div class="da-slide">
+                <h2>Enhance your Cycling Experience</h2>
+                <h4>With Carparks availability & Weather Updates</h4>
+                <p>Checking for available carparks will be hassle-free. Weather Forecast will be updated regularly to ensure a wet-free ride</p>
+                <a href="#" class="da-link button">Check Now!</a>
+                <div class="da-img">
+                    <img src="@Url.Content("~/Content/CustomTemplate/")images/logo02.png" width="320" alt="image02">
+                </div>
+            </div>
+            <!-- End second slide -->
+            <!-- Start third slide -->
+            <div class="da-slide">
+                <h2>Track your own location</h2>
+                <h4>With GPS, track yourself</h4>
+                <p>Find out your location with a best path mapped out</p>
+                <a href="#" class="da-link button">Track Me!</a>
+                <div class="da-img">
+                    <img src="@Url.Content("~/Content/CustomTemplate/")images/logo03.png" width="320" alt="image03">
+                </div>
+            </div>
+            <!-- Start third slide -->
+            <!-- Start cSlide navigation arrows -->
+            <div class="da-arrows">
+                <span class="da-arrows-prev"></span>
+                <span class="da-arrows-next"></span>
+            </div>
+            <!-- End cSlide navigation arrows -->
+        </div>
+    </div>
+</div>
+<!-- End home section -->
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CycoPath.Models.Park>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+<!-- Contact section start -->
+
+        <div class="map-wrapper">
+            <div class="map-canvas" id="map-canvas">
+                <iframe width="100%" height="100%" src="https://data.gov.sg/dataset/park-connector-loops/resource/1029bf7a-f702-4bbf-929f-4bf2e18c5f61/view/b9812887-bc94-4fa8-9a38-09a243a67828" frameBorder="0"></iframe>
+            </div>
+            
+        </div>
+
+<!-- Contact section end -->
+
+<!-- Newsletter section start -->
+<div class="section third-section">
+    <div class="container newsletter">
+        <div class="row-fluid">
+
+                @using (Html.BeginForm("TrackMe", "Park", FormMethod.Post, new { @class = "inline-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="span4">
+                        <strong>Start</strong>
+                        <select class="form-control span8" name="start">
+                            @foreach (var item in Model)
+                            {
+                                <option>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="span4">
+                        <strong>End</strong>
+                        <select class="form-control span8" name="end">
+                            @foreach (var item in Model)
+                            { 
+                                <option>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </option>
+                            }
+                        </select>
+                        </div>
+                        <div class="span2">
+                            <button id="subscribe" class="button button-sp">Find Path!</button>
+                        </div>
+                }
+        </div>
+    </div>
+</div>
+<!-- Newsletter section end -->
+
+
+
+

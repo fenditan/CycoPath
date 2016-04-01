@@ -1,8 +1,72 @@
-﻿@using Jmelosegui.Mvc.GoogleMap
+﻿@model dynamic
+@using CycoPath.Models;
+@using Jmelosegui.Mvc.GoogleMap
+
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_CustomLayout.cshtml";
 }
+
+@{List<string> Name = new List<string>();
+    List<double> CoordinatesX = new List<double>();
+    List<double> CoordinatesY = new List<double>();
+}
+
+@if (Model!=null)
+{
+    foreach (Park parks in Model.Parks)
+    {
+        string name = parks.Name;
+        string[] coordinates = parks.Coordinates.Split(',');
+
+
+        Name.Add(name);
+        CoordinatesX.Add(double.Parse(coordinates[1]));
+        CoordinatesY.Add(double.Parse(coordinates[0]));
+    }
+
+    ViewBag.startx = CoordinatesX[0];
+    ViewBag.starty = CoordinatesY[0];
+
+    @section scripts
+                            {
+        @(Html.GoogleMap().ScriptRegistrar())
+    }
+
+    @(
+    Html.GoogleMap()
+    .Name("map")
+    .Height(400)
+    .Center(c => c.UseCurrentPosition()
+    .Latitude((CoordinatesX[0] + CoordinatesX[1]) / 2)
+    .Longitude((CoordinatesY[0] + CoordinatesY[0]) / 2))
+    .Zoom(12)
+    .Markers(m => m.Add()
+    .Latitude(CoordinatesX[0])
+    .Longitude(CoordinatesY[0])
+    )
+    .Markers(n => n.Add()
+    .Latitude(CoordinatesX[1])
+    .Longitude(CoordinatesY[1])
+    )
+    .Polylines(pf =>
+    {
+        foreach (List<double[]> path in Model.Paths)
+        {
+            pf.Add().Points(ptn =>
+            {
+                foreach (double[] points in path)
+                {
+                    ptn.Add(points[1], points[0]);
+                }
+            }).StrokeColor(System.Drawing.Color.DarkRed);
+        }
+    })
+    )
+
+
+}
+
 
 

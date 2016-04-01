@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="CycoPath" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\YEAR\ 2\ TRIMESTER\ 2\\ICT2106\\Project\\CycoPath\\CycoPath\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^E:\\YEAR\ 2\ TRIMESTER\ 2\\ICT2106\\Project\\CycoPath\\CycoPath\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="CycoPathEntities-Web.config Connection String" description="" value="Data Source=cycopath.database.windows.net;Initial Catalog=CycoPath;Persist Security Info=True;User ID=cycopath;Password=!Password1234;MultipleActiveResultSets=True;Application Name=EntityFramework" tags="">
+    <parameterEntry kind="XmlFile" scope="E:\\YEAR\ 2\ TRIMESTER\ 2\\ICT2106\\Project\\CycoPath\\CycoPath\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CycoPathEntities']/@connectionString" />
+  </parameter>
+</parameters>

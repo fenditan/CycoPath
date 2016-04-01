@@ -1,0 +1,85 @@
+﻿<!-- Credits to Pluton Theme by BraphBerry.com -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CycoPath</title>
+    <!-- Load Roboto font -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <!-- Load css styles -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/style.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/pluton.css" />
+    <!--[if IE 7]>
+        <link rel="stylesheet" type="text/css" href="css/pluton-ie7.css" />
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/jquery.cslider.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CustomTemplate/")css/animate.css" />
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/CustomTemplate/")images/ico/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Content/CustomTemplate/")images/ico/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Content/CustomTemplate/")images/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Content/CustomTemplate/")images/ico/apple-touch-icon-57.png">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/CustomTemplate/")images/ico/favicon.ico">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="#" class="brand">
+                    <img src="@Url.Content("~/Content/CustomTemplate/")images/logo.png" width="120" height="120" alt="Logo" />
+                    <!-- This is website logo -->
+                </a>
+                <!-- Navigation button, visible on small resolution -->
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <i class="icon-menu"></i>
+                </button>
+                <!-- Main navigation -->
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav" id="top-navigation">                      
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Start", "Index", "Parks")</li>
+                        <li>@Html.ActionLink("Track Me!", "TrackMe", "Park")</li>
+                    </ul>
+                </div>
+                <!-- End main navigation -->
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+            <!-- Footer section start -->
+            <div class="footer">
+                <p>&copy; 2016 CycoPath, Team 8</p>
+            </div>
+            <!-- Footer section end -->
+            <!-- ScrollUp button start -->
+            <div class="scrollup">
+                <a href="#">
+                    <i class="icon-up-open"></i>
+                </a>
+            </div>
+            <!-- ScrollUp button end -->
+            <!-- Include javascript -->
+            <script src="@Url.Content("~/Content/CustomTemplate/")js/jquery.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/jquery.mixitup.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/bootstrap.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/modernizr.custom.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/jquery.bxslider.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/jquery.cslider.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/jquery.placeholder.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/jquery.inview.js"></script>
+            <script type="text/javascript" src="@Url.Content("~/Content/CustomTemplate/")js/app.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+
+
+</html>
