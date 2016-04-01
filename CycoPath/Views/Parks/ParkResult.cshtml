@@ -5,8 +5,8 @@
 
 
 @{List<string> Name = new List<string>();
-  List<double> CoordinatesX = new List<double>();
-  List<double> CoordinatesY = new List<double>();
+    List<double> CoordinatesX = new List<double>();
+    List<double> CoordinatesY = new List<double>();
 }
 
 @foreach (Park parks in Model.Parks)
@@ -110,17 +110,11 @@
                                 <h3>Information</h3>
                                 <p>To set path as the path that are you going select the radio button bellow. By selecting the radio button, this path will be saved and can be used in "Track Me!" function.</p>
                                 <div class="thumbnail">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Set as path!
-                                        </label>
+                                    <div>
+                                        @Html.RadioButton("Answer", "Set as path!") <span>Set as path!</span>
                                     </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Set as path and search carpark!
-                                        </label>
+                                    <div>
+                                        @Html.RadioButton("Answer", "Set as path and search carpark!") <span>Set as path and search carpark!</span>
                                     </div>
                                 </div>
                                 <input type="hidden" id="hiddenTab" name="hiddenTab" value="@ViewBag.startx" />

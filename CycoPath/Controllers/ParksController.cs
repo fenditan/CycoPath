@@ -43,6 +43,8 @@ namespace CycoPath.Controllers
             weather = listofWeather;
             ParksPathsModel.Weather = weather;
 
+            Session["ParksPathsModelTemp"] = ParksPathsModel;
+
             return View(ParksPathsModel);
 
         }
