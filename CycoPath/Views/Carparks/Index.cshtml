@@ -20,8 +20,8 @@
     Html.GoogleMap()
                .Name("map")
                .Height(400)
-               .Center(c => c.Latitude(1.290270)
-                             .Longitude(103.851959))
+               .Center(c => c.Latitude(@ViewBag.lat)
+                             .Longitude(@ViewBag.lon))
                .Zoom(10)
                .Circles(cf =>
                {
@@ -45,7 +45,7 @@
                                  {
                                      Template =
                            {
-                                    Content = () => ViewContext.Writer.Write(regionInfo.address)
+                                     Content = () => ViewContext.Writer.Write("<form action='/TrackMe/Index' method='post'><input type='hidden' id='hiddenTab3' name='hiddenTab3' value='"+ regionInfo.y_coord+","+regionInfo.x_coord+ "' /><input type='submit' value='Select'/></form>")
                            }
                                  };
                              }
