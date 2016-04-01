@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using CycoPath.Models;
-using CycoPath.Services;
 
 namespace CycoPath.DAL
 {
@@ -11,38 +7,20 @@ namespace CycoPath.DAL
     {
         private IPathGateway pathGateway = new PathGateway();
         private IParkGateway parkGateway = new ParkGateway();
-        private WeatherGateway weatherGateway = new WeatherGateway();
-
-        List<CycoPathModel> listModel = new List<CycoPathModel>();
-
-        public ICollection<CycoPathModel> SearchAllParksPath(List<string> listString){
-
-            IEnumerable<Park> park = parkGateway.SearchPark(listString);
-            
-            foreach (Park parkSingle in park)
-            {
-                Path pathSingle = pathGateway.SearchPath(parkSingle.Name);
-                CycoPathModel model = new CycoPathModel();
-                model.ParkViewModel = parkSingle;
-                model.PathViewModel = pathSingle;
-                listModel.Add(model);
-            }
-            return listModel;
-        }
+        private IWeatherGateway weatherGateway = new WeatherGateway();
 
         public IEnumerable<Park> SelectAllPark()
         {
             return parkGateway.SelectALL();
         }
 
-        //public Park SelectParkById(int? id)
-        //{
-        //    return parkGateway.SelectById(id);
-        //}
-
-        public IEnumerable<Park> SearchPark(List<string> listString)
+        public IEnumerable<Park> getStartEndParks(string start, string end)
         {
-            return parkGateway.SearchPark(listString);
+            List<Park> result = new List<Park>();
+            result.Add(parkGateway.SelectByName(start));
+            result.Add(parkGateway.SelectByName(end));
+
+            return result;
         }
 
         public IEnumerable<Path> SelectAllPath()
@@ -54,15 +32,5 @@ namespace CycoPath.DAL
         {
             return weatherGateway.getParkWeather(coordinates);
         }
-
-        //public Path SelectPathById(int? id)
-        //{
-        //    return pathGateway.SelectById(id);
-        //}
-
-        //public IEnumerable<Path> SearchPath(List<string> listString)
-        //{
-        //    return pathGateway.SearchPath(listString);
-        //}
     }
 }

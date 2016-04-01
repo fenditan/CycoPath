@@ -41,8 +41,6 @@
                              {
                                  marker.Latitude = regionInfo.y_coord;
                                  marker.Longitude = regionInfo.x_coord;
-                                         // marker.Address = regionInfo.address;
-                                         //marker.Title = regionInfo.address;
                                          marker.Window = new InfoWindow(marker)
                                  {
                                      Template =
@@ -59,82 +57,3 @@
 
 
 }
-
-@* <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.carparkNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.x_coord)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.y_coord)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.carparkType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.typeOfparking)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.shortTermparking)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.freeParking)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nightParking)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.parkAndrideScheme)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.adhocParking)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.carparkNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.x_coord)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.y_coord)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.carparkType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.typeOfparking)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.shortTermparking)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.freeParking)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nightParking)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.parkAndrideScheme)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.adhocParking)
-            </td>
-        </tr>
-    }
-
-    </table>
-*@

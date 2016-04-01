@@ -1,9 +1,7 @@
 ﻿using CycoPath.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace CycoPath.DAL
 {
@@ -37,20 +35,6 @@ namespace CycoPath.DAL
             db.SaveChanges();
         }
 
-        //public IEnumerable<Path> SearchPath(List<string> listString)
-        //{
-
-        //    List<Path> list = new List<Path>();
-
-        //    foreach (var abc in listString)
-        //    {
-        //        Path model = data.SqlQuery("SELECT TOP 1 * From dbo.Paths WHERE ConnectorName LIKE '%" + abc + "%'").Single();
-        //        list.Add(model);
-        //    }
-        //    IEnumerable<Path> listConnector = list;
-        //    return listConnector;
-        //}
-
         public Path SearchPath(string park) {
             Path model = data.SqlQuery("SELECT TOP 1 * From dbo.Paths WHERE ConnectorName LIKE '%" + park + "%'").Single();
             return model;
@@ -70,7 +54,7 @@ namespace CycoPath.DAL
 
         public void Update(Path Path)
         {
-            db.Entry(Path).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(Path).State = EntityState.Modified;
             Save();
         }
     }

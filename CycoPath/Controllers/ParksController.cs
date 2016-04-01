@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CycoPath.DAL;
 using CycoPath.Models;
 using System.Dynamic;
-using Jmelosegui.Mvc.GoogleMap;
 
 namespace CycoPath.Controllers
 {
@@ -32,7 +27,7 @@ namespace CycoPath.Controllers
             startEnd.Add(start);
             startEnd.Add(end);
 
-            IEnumerable<Park> startEndPark = data.SearchPark(startEnd);
+            IEnumerable<Park> startEndPark = data.getStartEndParks(start, end);
             ParksPathsModel.Parks = startEndPark;
             List<Weather> listofWeather= new List<Weather>();
             IEnumerable<Weather> weather;
@@ -47,6 +42,7 @@ namespace CycoPath.Controllers
             listofWeather.Add(data.getParkWeather(((List<Park>)startEndPark)[1].Coordinates));
             weather = listofWeather;
             ParksPathsModel.Weather = weather;
+
             return View(ParksPathsModel);
 
         }
@@ -163,3 +159,4 @@ namespace CycoPath.Controllers
         }
     }
 }
+ 

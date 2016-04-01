@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using CycoPath.Models;
 using System.Data.Entity;
 
@@ -54,22 +52,9 @@ namespace CycoPath.DAL
             Save();
         }
 
-
-        public IEnumerable<Park> SearchPark(List<string> listString)
+        public Park SelectByName(string parkName)
         {
-
-            List<Park> list = new List<Park>();
-
-            foreach (var abc in listString)
-            {
-                Park model = data.SqlQuery("SELECT TOP 1* From dbo.Parks WHERE Name ='" + abc + "'").Single();
-                list.Add(model);
-            }
-            IEnumerable<Park> listPark = list;
-
-            return listPark;
+            return data.SqlQuery("SELECT TOP 1* From dbo.Parks WHERE Name ='" + parkName + "'").Single();
         }
-
-
     }
 }

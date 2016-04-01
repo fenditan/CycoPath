@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CycoPath.DAL;
-using CycoPath.Models;
 
 namespace CycoPath.Controllers
 {
@@ -24,8 +17,6 @@ namespace CycoPath.Controllers
             double lon = Convert.ToDouble(hiddenTab1);
             ViewBag.lat = lat;
             ViewBag.lon = lon;
-
-            //  IEnumerable<Carpark> data = carparkGateway.SearchCarPark(lat, lon);
 
             return View(carparkGateway.SearchCarPark(lat, lon));
         }

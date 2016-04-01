@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using CycoPath.Models;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -16,7 +15,7 @@ namespace CycoPath.DAL
 
         public CarparkGateway()
         {
-            this.data = db.Set<Carpark>();
+            data = db.Set<Carpark>();
         }
 
         public Carpark Delete(int? id)
@@ -102,10 +101,6 @@ namespace CycoPath.DAL
         private double rad2deg(double rad)
         {
             return (rad / Math.PI * 180.0);
-        }
-        public double ToRadians(double valueInDegrees)
-        {
-            return (Math.PI / 180) * valueInDegrees;
         }
     }
 }

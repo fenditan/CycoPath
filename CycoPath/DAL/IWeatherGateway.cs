@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CycoPath.Models;
+using System;
 
 namespace CycoPath.DAL
 {
     interface IWeatherGateway
     {
-
+        Weather getParkWeather(String coordinates);
     }
 }
