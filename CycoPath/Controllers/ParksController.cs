@@ -22,10 +22,6 @@ namespace CycoPath.Controllers
         public ActionResult ParkResult(string start, string end)
         {
             dynamic ParksPathsModel = new ExpandoObject();
-            
-            List < String > startEnd = new List<String>();
-            startEnd.Add(start);
-            startEnd.Add(end);
 
             IEnumerable<Park> startEndPark = data.getStartEndParks(start, end);
             ParksPathsModel.Parks = startEndPark;
