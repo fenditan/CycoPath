@@ -48,7 +48,7 @@ namespace CycoPath.DAL
 
         public void Update(Park park)
         {
-            db.Entry(park).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(park).State = EntityState.Modified;
             Save();
         }
 

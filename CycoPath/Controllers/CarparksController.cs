@@ -7,10 +7,10 @@ namespace CycoPath.Controllers
 {
     public class CarparksController : Controller
     {
-        private CarparkGateway carparkGateway = new CarparkGateway();
+        private ICarparkGateway carparkGateway = new CarparkGateway();
 
         // GET: Carparks
-        public ActionResult Index(string hiddenTab1, string hiddenTab,string Answer)
+        public ActionResult Index(string hiddenTab1, string hiddenTab, string Answer)
 
         {
             Session["ParksPathsModel"] = Session["ParksPathsModelTemp"];

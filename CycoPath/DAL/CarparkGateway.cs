@@ -52,7 +52,7 @@ namespace CycoPath.DAL
 
         public void Update(Carpark carpark)
         {
-            db.Entry(carpark).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(carpark).State = EntityState.Modified;
             Save();
         }
 
@@ -91,7 +91,6 @@ namespace CycoPath.DAL
             IEnumerable<Carpark> listSearched = list;
             return listSearched;
         }
-
 
         private double deg2rad(double deg)
         {
