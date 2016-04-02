@@ -3,34 +3,34 @@
 @using CycoPath.Models;
 @using Jmelosegui.Mvc.GoogleMap
 
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_CustomLayout.cshtml";
-    
-}
 
-@{List<string> Name = new List<string>();
+}
+@{ 
     List<double> CoordinatesX = new List<double>();
     List<double> CoordinatesY = new List<double>();
 }
 
-@foreach (Park parks in Model.Parks)
-{
-    if (parks != null)
-    {
-        string name = parks.Name;
-        string[] coordinates = parks.Coordinates.Split(',');
-
-
-        Name.Add(name);
-        CoordinatesX.Add(double.Parse(coordinates[1]));
-        CoordinatesY.Add(double.Parse(coordinates[0]));
-    }
-}
-
 @{
-    if (HttpContext.Current.Session["selectedCarpark"].ToString() != null)
+    List<string> Name = new List<string>();
+
+
+    foreach (Park parks in Model.Parks)
+    {
+        if (parks != null)
+        {
+            string name = parks.Name;
+            string[] coordinates = parks.Coordinates.Split(',');
+
+
+            Name.Add(name);
+            CoordinatesX.Add(double.Parse(coordinates[1]));
+            CoordinatesY.Add(double.Parse(coordinates[0]));
+        }
+    }
+    if (HttpContext.Current.Session["selectedCarpark"] != null)
     {
         string carpark = HttpContext.Current.Session["selectedCarpark"].ToString();
         string[] coordinatesCarpark = carpark.Split(',');
@@ -38,7 +38,15 @@
         CoordinatesX.Add(double.Parse(coordinatesCarpark[0]));
         CoordinatesY.Add(double.Parse(coordinatesCarpark[1]));
     }
+    else {
+        double nothing = 1;
+        CoordinatesX.Add(nothing);
+        CoordinatesY.Add(nothing);
+    }
 }
+
+
+
 
 
 @section scripts
@@ -65,18 +73,18 @@
     .Longitude(CoordinatesY[2])
     )
         .Polylines(pf =>
-    {
-        foreach (List<double[]> path in Model.Paths)
         {
-            pf.Add().Points(ptn =>
+            foreach (List<double[]> path in Model.Paths)
             {
-                foreach (double[] points in path)
+                pf.Add().Points(ptn =>
                 {
-                    ptn.Add(points[1], points[0]);
-                }
-            }).StrokeColor(System.Drawing.Color.DarkRed);
-        }
-    })
+                    foreach (double[] points in path)
+                    {
+                        ptn.Add(points[1], points[0]);
+                    }
+                }).StrokeColor(System.Drawing.Color.DarkRed);
+            }
+        })
 .Center(c => c.UseCurrentPosition()
                 //this will be the Latitude if your map do not support
                 //geolocation or the client denies the location sharing
@@ -92,12 +100,52 @@
                             .ZIndex(3)
                             .DisableAutoPan(false)
                             .Content(
-                                    @<text>
-                                        <h1>Current Location</h1>
-                                    </text>
+                                                                                    @<text>
+                                                                                    <h1>Current Location</h1>
+                                                                                    </text>
             )
                         )
         )
         .Render();
 
-}      
+}
+<div class="section third-section">
+    <div class="triangle"></div>
+    <div class="container">
+        <!-- Park Cards section start -->
+        <div class="row-fluid team">
+            @{int i = 0;}
+            @foreach (Park park in Model.Parks)
+            {
+                <div class="span4">
+                    <div class="thumbnail">
+                        <img src="@Url.Content("~/Content/CustomTemplate/")images/Team1.png" alt="team 1">
+                        <h3>@Html.DisplayFor(modelItem => park.Name)</h3>
+
+                        @{int k = 0;}
+                        @foreach (Weather weather in Model.Weather)
+                        {
+                            if (k == 0 && i == 0)
+                            {
+                                <div class="mask">
+                                    <h2>Forcast</h2>
+                                    <p>@Html.DisplayFor(modelItem => weather.Forecast)</p>
+                                </div>
+                            }
+                            else if (k == 1 && i == 1)
+                            {
+                                <div class="mask">
+                                    <h2>Forecast</h2>
+                                    <p>@Html.DisplayFor(modelItem => weather.Forecast)</p>
+                                </div>
+                            }
+                            k++;
+                        }
+                    </div>
+                </div>
+                                i++;
+                            }
+
+        </div>
+    </div>
+</div>

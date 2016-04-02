@@ -18,11 +18,12 @@ namespace CycoPath.Controllers
             if (Session["ParksPathsModel"] != null)
             {
                 ParksPathsModel = HttpContext.Session["ParksPathsModel"];
+                return View(ParksPathsModel);
             }
             else {
                 ParksPathsModel = null;
             }
-            return View(ParksPathsModel);
+            return View();
         }
 
     }
