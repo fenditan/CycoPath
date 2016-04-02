@@ -37,7 +37,10 @@ namespace CycoPath.Controllers
             weather.Add(data.getParkWeather(((List<Park>)startEndPark)[1].Coordinates));
             ParksPathsModel.Weather = weather;
 
-            Session["ParksPathsModelTemp"] = ParksPathsModel;
+            HttpContext.Session["ParksTemp"] = ParksPathsModel.Parks;
+            HttpContext.Session["PathsTemp"] = ParksPathsModel.Paths;
+            HttpContext.Session["WeatherTemp"] = ParksPathsModel.Weather;
+            HttpContext.Session["ParksPathsModelTemp"] = ParksPathsModel;
 
             return View(ParksPathsModel);
 

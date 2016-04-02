@@ -1,4 +1,5 @@
 ﻿@model dynamic
+@using System.Drawing
 @using CycoPath.Models;
 @using Jmelosegui.Mvc.GoogleMap
 
@@ -6,6 +7,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_CustomLayout.cshtml";
+    
 }
 
 @{List<string> Name = new List<string>();
@@ -13,9 +15,9 @@
     List<double> CoordinatesY = new List<double>();
 }
 
-@if (Model!=null)
+@foreach (Park parks in Model.Parks)
 {
-    foreach (Park parks in Model.Parks)
+    if (parks != null)
     {
         string name = parks.Name;
         string[] coordinates = parks.Coordinates.Split(',');
@@ -25,23 +27,31 @@
         CoordinatesX.Add(double.Parse(coordinates[1]));
         CoordinatesY.Add(double.Parse(coordinates[0]));
     }
+}
 
-    ViewBag.startx = CoordinatesX[0];
-    ViewBag.starty = CoordinatesY[0];
+@{
+    if (HttpContext.Current.Session["selectedCarpark"].ToString() != null)
+    {
+        string carpark = HttpContext.Current.Session["selectedCarpark"].ToString();
+        string[] coordinatesCarpark = carpark.Split(',');
 
-    @section scripts
-                            {
-        @(Html.GoogleMap().ScriptRegistrar())
+        CoordinatesX.Add(double.Parse(coordinatesCarpark[0]));
+        CoordinatesY.Add(double.Parse(coordinatesCarpark[1]));
     }
+}
 
-    @(
+
+@section scripts
+                            {
+    @(Html.GoogleMap().ScriptRegistrar())
+}
+
+
+@{
     Html.GoogleMap()
-    .Name("map")
-    .Height(400)
-    .Center(c => c.UseCurrentPosition()
-    .Latitude((CoordinatesX[0] + CoordinatesX[1]) / 2)
-    .Longitude((CoordinatesY[0] + CoordinatesY[0]) / 2))
-    .Zoom(12)
+.Name("map")
+.Height(300)
+.Zoom(15)
     .Markers(m => m.Add()
     .Latitude(CoordinatesX[0])
     .Longitude(CoordinatesY[0])
@@ -50,7 +60,11 @@
     .Latitude(CoordinatesX[1])
     .Longitude(CoordinatesY[1])
     )
-    .Polylines(pf =>
+        .Markers(n => n.Add()
+    .Latitude(CoordinatesX[2])
+    .Longitude(CoordinatesY[2])
+    )
+        .Polylines(pf =>
     {
         foreach (List<double[]> path in Model.Paths)
         {
@@ -63,10 +77,27 @@
             }).StrokeColor(System.Drawing.Color.DarkRed);
         }
     })
-    )
+.Center(c => c.UseCurrentPosition()
+                //this will be the Latitude if your map do not support
+                //geolocation or the client denies the location sharing
+                .Latitude(23d)
+                //this will be the Longitude if your map do not support
+                //geolocation or the client denies the location sharing
+                .Longitude(-82.3d))
+                                        .Markers(marker => marker.Add()
+                            .Title("Current Location")
+                             .Icon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png")
+                                                                                 .Window(window => window.Add()
+                            .MaxWidth(200)
+                            .ZIndex(3)
+                            .DisableAutoPan(false)
+                            .Content(
+                                    @<text>
+                                        <h1>Current Location</h1>
+                                    </text>
+            )
+                        )
+        )
+        .Render();
 
-
-}
-
-
-
+}      

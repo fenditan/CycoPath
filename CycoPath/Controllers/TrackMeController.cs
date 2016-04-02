@@ -17,12 +17,12 @@ namespace CycoPath.Controllers
             dynamic ParksPathsModel = new ExpandoObject();
             if (Session["ParksPathsModel"] != null)
             {
-                ParksPathsModel = Session["ParksPathsModel"];
+                ParksPathsModel = HttpContext.Session["ParksPathsModel"];
             }
             else {
                 ParksPathsModel = null;
             }
-            return View();
+            return View(ParksPathsModel);
         }
 
     }

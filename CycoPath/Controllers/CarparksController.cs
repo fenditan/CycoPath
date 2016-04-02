@@ -13,8 +13,8 @@ namespace CycoPath.Controllers
         public ActionResult Index(string hiddenTab1, string hiddenTab, string Answer)
 
         {
-            Session["ParksPathsModel"] = Session["ParksPathsModelTemp"];
-            Session["ParksPathsModelTemp"] = 0;
+            HttpContext.Session["ParksPathsModel"] = HttpContext.Session["ParksPathsModelTemp"];
+            HttpContext.Session["ParksPathsModelTemp"] = 0;
             if (Answer.Contains("Set as path and search carpark!"))
             {
                 double lat = Convert.ToDouble(hiddenTab);
