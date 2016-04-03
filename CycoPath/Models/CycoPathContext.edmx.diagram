@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="952a31c0c0214720b8a8a963fec4d807" Name="Diagram1">
-        <EntityTypeShape EntityType="CycoPathModel.Park" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CycoPathModel.Park" Width="1.875" PointX="0.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CycoPathModel.Path" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CycoPathModel.Carpark" Width="1.5" PointX="0.875" PointY="2.875" />
       </Diagram>

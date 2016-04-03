@@ -29,33 +29,60 @@
 }
 
 @(
-    Html.GoogleMap()
-    .Name("map")
-    .Height(400)
-    .Center(c => c.Latitude((CoordinatesX[0] + CoordinatesX[1]) / 2)
-    .Longitude((CoordinatesY[0] + CoordinatesY[0]) / 2))
-    .Zoom(12)
-    .Markers(m => m.Add()
-    .Latitude(CoordinatesX[0])
-    .Longitude(CoordinatesY[0])
-    )
-    .Markers(n => n.Add()
-    .Latitude(CoordinatesX[1])
-    .Longitude(CoordinatesY[1])
-    )
-    .Polylines(pf =>
-    {
-        foreach (List<double[]> path in Model.Paths)
+                        Html.GoogleMap()
+                        .Name("map")
+                        .Height(400)
+                        .Center(c => c.Latitude((CoordinatesX[0] + CoordinatesX[1]) / 2)
+                        .Longitude((CoordinatesY[0] + CoordinatesY[0]) / 2))
+                        .Zoom(12)
+
+
+        .Polylines(pf =>
         {
-            pf.Add().Points(ptn =>
+            foreach (List<double[]> path in Model.Paths)
             {
-                foreach (double[] points in path)
+                pf.Add().Points(ptn =>
                 {
-                    ptn.Add(points[1], points[0]);
-                }
-            }).StrokeColor(System.Drawing.Color.DarkRed);
-        }
-    })
+                    foreach (double[] points in path)
+                    {
+                        ptn.Add(points[1], points[0]);
+                    }
+                }).StrokeColor(System.Drawing.Color.DarkRed);
+            }
+        })
+         .Markers(m => m.Add()
+                        .Latitude(CoordinatesX[0])
+                        .Longitude(CoordinatesY[0])
+
+                        .Title("Start Location")
+
+                        .Window(window => window.Add()
+                                                .MaxWidth(200)
+                                                .ZIndex(3)
+                                                .DisableAutoPan(false)
+                                                .Content(
+                            // To put the model part here
+                        @<text> <h1 style="color:black">Start Location</h1> </text>
+                                )
+                            )
+                        )
+
+                .Markers(n => n.Add()
+                .Latitude(CoordinatesX[1])
+                .Longitude(CoordinatesY[1])
+                .Title("End Location")
+
+                        .Window(window => window.Add()
+                                                .MaxWidth(200)
+                                                .ZIndex(3)
+                                                .DisableAutoPan(false)
+                                                .Content(
+                            // To put the model part here
+                                @<text><h1 style="color:black">End Location</h1></text>
+                            )
+                                                
+                        )
+                    )
 )
 
 @{
