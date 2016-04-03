@@ -58,19 +58,42 @@
 @{
     Html.GoogleMap()
 .Name("map")
-.Height(300)
+.Height(400)
 .Zoom(15)
     .Markers(m => m.Add()
     .Latitude(CoordinatesX[0])
     .Longitude(CoordinatesY[0])
+                            .Window(window => window.Add()
+                                                .MaxWidth(200)
+                                                .ZIndex(3)
+                                                .DisableAutoPan(false)
+                                                .Content(
+    // To put the model part here
+    @<text> <h1 style="color:black">Start Location: @Html.Raw(Name[0])  </h1> </text>
+                                )
+                            )
+                        
     )
+
     .Markers(n => n.Add()
     .Latitude(CoordinatesX[1])
     .Longitude(CoordinatesY[1])
+                            .Window(window => window.Add()
+                                                .MaxWidth(200)
+                                                .ZIndex(3)
+                                                .DisableAutoPan(false)
+                                                .Content(
+            // To put the model part here
+            @<text><h1 style="color:black">End Location: @Html.Raw(Name[1]) </h1></text>
+                            )
+
+                        )
+                    
     )
         .Markers(n => n.Add()
     .Latitude(CoordinatesX[2])
     .Longitude(CoordinatesY[2])
+
     )
         .Polylines(pf =>
         {
