@@ -109,25 +109,38 @@
     .Longitude(CoordinatesY[2])
 
     )
-        .Polylines(pf =>
-        {
-            try
+                                     .Polylines(pf => pf.Add()
+            .Points(ptn =>
             {
                 foreach (List<double[]> path in Model.Paths)
                 {
-                    pf.Add().Points(ptn =>
+                    foreach (double[] points in path)
                     {
-                        foreach (double[] points in path)
-                        {
-                            ptn.Add(points[1], points[0]);
-                        }
-                    }).StrokeColor(System.Drawing.Color.DarkRed);
+                        ptn.Add(points[1], points[0]);
+                    }
                 }
-            }
-            catch (Exception) { }
+            })
+            .StrokeColor(System.Drawing.Color.DarkRed))
+//.Polylines(pf =>
+//{
+//    try
+//    {
+
+//        foreach (List<double[]> path in Model.Paths)
+//        {
+//            pf.Add().Points(ptn =>
+//            {
+//                foreach (double[] points in path)
+//                {
+//                    ptn.Add(points[1], points[0]);
+//                }
+//            }).StrokeColor(System.Drawing.Color.DarkRed);
+//        }
+//    }
+//    catch (Exception) { }
 
 
-        })
+//})
 .Center(c => c.UseCurrentPosition()
                 //this will be the Latitude if your map do not support
                 //geolocation or the client denies the location sharing

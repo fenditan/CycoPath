@@ -32,11 +32,22 @@
 @(
                         Html.GoogleMap()
                         .Name("map")
-                        .Height(600)
+                        .Height(400)
                         .Center(c => c.Latitude((CoordinatesX[0] + CoordinatesX[1]) / 2)
                         .Longitude((CoordinatesY[0] + CoordinatesY[0]) / 2))
-                        .Zoom(13)
-
+                        .Zoom(12)
+                                 .Polylines(pf => pf.Add()
+            .Points(ptn =>
+            {
+                foreach (List<double[]> path in Model.Paths)
+                {
+                    foreach (double[] points in path)
+                    {
+                        ptn.Add(points[1], points[0]);
+                    }
+                }
+            })
+            .StrokeColor(System.Drawing.Color.DarkRed))
 
          //.Polylines(pf =>
          //{
@@ -51,18 +62,6 @@
          //        }).StrokeColor(System.Drawing.Color.DarkRed);
          //    }
          //})
-         .Polylines(pf => pf.Add()
-            .Points(ptn =>
-            {
-                foreach (List<double[]> path in Model.Paths)
-                {
-                    foreach (double[] points in path)
-                    {
-                        ptn.Add(points[1], points[0]);
-                    }
-                }
-            })
-            .StrokeColor(System.Drawing.Color.DarkRed))
          .Markers(m => m.Add()
                         .Latitude(CoordinatesX[0])
                         .Longitude(CoordinatesY[0])
