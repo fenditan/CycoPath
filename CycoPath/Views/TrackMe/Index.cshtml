@@ -44,7 +44,7 @@
         CoordinatesY.Add(nothing);
     }
 
-    if (HttpContext.Current.Session["selectedCarpark"] != null)
+    try
     {
         string carpark = HttpContext.Current.Session["selectedCarpark"].ToString();
         string[] coordinatesCarpark = carpark.Split(',');
@@ -52,7 +52,7 @@
         CoordinatesX.Add(double.Parse(coordinatesCarpark[0]));
         CoordinatesY.Add(double.Parse(coordinatesCarpark[1]));
     }
-    else {
+    catch(Exception) {
         double nothing = 1;
         CoordinatesX.Add(nothing);
         CoordinatesY.Add(nothing);
@@ -72,7 +72,7 @@
 @{
     Html.GoogleMap()
 .Name("map")
-.Height(600)
+.Height(500)
 .Zoom(13)
     .Markers(m => m.Add()
     .Latitude(CoordinatesX[0])
@@ -83,7 +83,7 @@
                                                 .DisableAutoPan(false)
                                                 .Content(
     // To put the model part here
-    @<text> <h1 style="color:black">Start Location: @Html.Raw(Name[0])  </h1> </text>
+    @<text> <h1 style="color:black;">Start Location: @Html.Raw(Name[0])  </h1> </text>
                                 )
                             )
 
@@ -98,7 +98,7 @@
                                                 .DisableAutoPan(false)
                                                 .Content(
             // To put the model part here
-            @<text><h1 style="color:black">End Location: @Html.Raw(Name[1]) </h1></text>
+            @<text><h1 style="color:black;">End Location: @Html.Raw(Name[1]) </h1></text>
                             )
 
                         )
@@ -112,13 +112,18 @@
                                      .Polylines(pf => pf.Add()
             .Points(ptn =>
             {
-                foreach (List<double[]> path in Model.Paths)
-                {
-                    foreach (double[] points in path)
+                try {
+                    foreach (List<double[]> path in Model.Paths)
                     {
-                        ptn.Add(points[1], points[0]);
+                        foreach (double[] points in path)
+                        {
+                            ptn.Add(points[1], points[0]);
+                        }
                     }
+                } catch (Exception) {
+
                 }
+
             })
             .StrokeColor(System.Drawing.Color.DarkRed))
 //.Polylines(pf =>
@@ -157,7 +162,7 @@
                             .DisableAutoPan(false)
                             .Content(
                                 @<text>
-                                <h1>Current Location</h1>
+                                <h1 style="color:black;">Current Location</h1>
                                 </text>
             )
                         )
